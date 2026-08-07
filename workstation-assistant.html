@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>数采运维助手</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="wpf-body official-wpf-body">
+  <section class="official-wpf-window" id="wpfWindow">
+    <header class="official-titlebar">
+      <div class="official-brand">
+        <div class="wpf-logo">D</div>
+        <div><div class="official-brand-title" data-i18n="wpf.title">数采运维助手</div><div class="official-brand-sub">Data Collection Operations Assistant</div></div>
+      </div>
+      <div class="official-station-context">
+        <span class="station-name">包装台 · PackingTable</span>
+        <span class="status-pill green"><span class="dot green"></span><span data-i18n="wpf.agentOnline">Agent 在线</span></span>
+        <span class="status-pill green"><span class="dot green"></span><span data-i18n="wpf.apiConnected">中央 API 已连接</span></span>
+      </div>
+      <div class="official-title-actions">
+        <div class="theme-switch compact-theme" aria-label="主题切换"><button data-theme="light" class="active" data-i18n="theme.light">浅色</button><button data-theme="dark" data-i18n="theme.dark">深色</button></div>
+        <div class="language-switch official-language-switch"><span class="language-icon">文</span><select class="ops-language language-select"><option value="zh-CN">中文</option><option value="en-US">English</option><option value="es-MX">Español</option><option value="th-TH">ไทย</option></select></div>
+        <div class="window-controls official-window-controls"><button class="window-control" id="mockMin" title="最小化">—</button><button class="window-control" id="mockMax" title="最大化 / 还原">□</button><button class="window-control close" id="mockClose" title="关闭">×</button></div>
+      </div>
+    </header>
+
+    <main class="official-wpf-content">
+      <section class="official-status-overview">
+        <div class="official-health-summary">
+          <div class="health-symbol failed"><span>!</span></div>
+          <div>
+            <div class="command-label" data-i18n="wpf.health">工作站健康状态</div>
+            <div class="official-health-line"><strong data-i18n="wpf.problem">存在异常</strong><span class="active-chip">Checklist v3 · 已生效</span></div>
+            <p data-i18n="wpf.summaryCopy">检测到 1 项关键异常；PCS、SQL Server 与 Agent 运行环境正常。</p>
+          </div>
+        </div>
+        <div class="official-overview-metrics">
+          <article><span data-i18n="wpf.anomaly">异常</span><strong class="text-red">1</strong><small data-i18n="wpf.requiresReview">需人工确认</small></article>
+          <article><span data-i18n="wpf.passedCount">通过</span><strong class="text-green">3</strong><small data-i18n="wpf.coreNormal">核心项正常</small></article>
+          <article><span data-i18n="wpf.runningTasks">运行任务</span><strong>0</strong><small data-i18n="wpf.idle">当前空闲</small></article>
+          <article><span data-i18n="wpf.versionState">版本状态</span><strong class="text-green">Active</strong><small data-i18n="wpf.v3Active">v3 已生效</small></article>
+        </div>
+        <button class="official-runall" id="runAllBtn"><span class="runall-icon">▶</span><span><b data-i18n="wpf.runall">立即检查全部</b><small id="runningText">最近完成 11:26:57</small></span></button>
+      </section>
+
+      <section class="official-workspace">
+        <aside class="official-checklist-panel">
+          <div class="official-panel-head"><div><div class="section-eyebrow">CHECKLIST</div><h2 data-i18n="wpf.checklist">检查项目</h2><p data-i18n="wpf.checkHint">点击检查项查看当前结果与处置建议。</p></div><span class="panel-count" data-i18n="wpf.groups">4 个分组</span></div>
+          <div class="check-nav-list official-check-nav" id="checkNavList">
+            <button class="check-nav-item official-check-item active failed" data-key="ln"><span class="nav-status-dot red"></span><span class="nav-main"><b>Infor LN 连通性</b><small>TCP · 10.209.37.61:8312</small></span><span class="nav-state text-red">失败</span><span class="nav-arrow">›</span></button>
+            <button class="check-nav-item official-check-item" data-key="pcs"><span class="nav-status-dot green"></span><span class="nav-main"><b>PCS 服务连通性</b><small>TCP · 10.209.37.189:5080</small></span><span class="nav-state text-green">通过</span><span class="nav-arrow">›</span></button>
+            <button class="check-nav-item official-check-item" data-key="sql"><span class="nav-status-dot green"></span><span class="nav-main"><b>SQL Server 连通性</b><small>TCP · PESDB:1433</small></span><span class="nav-state text-green">通过</span><span class="nav-arrow">›</span></button>
+            <button class="check-nav-item official-check-item" data-key="agent"><span class="nav-status-dot green"></span><span class="nav-main"><b>Agent 运行环境</b><small>Cache · Named Pipe · Disk</small></span><span class="nav-state text-green">通过</span><span class="nav-arrow">›</span></button>
+          </div>
+          <div class="official-checklist-summary"><div><span class="dot red"></span><span data-i18n="wpf.needsAction">需要处理</span><strong>1</strong></div><div><span class="dot green"></span><span data-i18n="wpf.normal">运行正常</span><strong>3</strong></div></div>
+        </aside>
+
+        <section class="official-diagnosis-panel" id="diagnosisPanel">
+          <div class="official-diagnosis-header">
+            <div class="diagnosis-title-wrap"><div class="diagnosis-kicker" id="detailKicker">关键异常</div><div class="official-diagnosis-title"><span class="diagnosis-big-dot red" id="detailDot"></span><h1 id="detailTitle">Infor LN 服务连接失败</h1><span class="diagnosis-badge failed" id="detailBadge">失败</span></div><p id="detailSub">当前工位无法建立到 Infor LN 服务端口的 TCP 连接。</p></div>
+            <div class="diagnosis-top-actions"><button class="detail-btn ghost" id="detailRecheck" data-i18n="wpf.recheck">↻ 重新检查</button><button class="detail-btn ai" id="detailAi" data-i18n="wpf.ai">✦ 让 AI 分析</button></div>
+          </div>
+
+          <div class="official-diagnosis-metrics diagnosis-metrics"><article><span data-i18n="wpf.target">目标地址</span><strong id="detailTarget">10.209.37.61</strong></article><article><span data-i18n="wpf.port">端口</span><strong id="detailPort">8312</strong></article><article><span data-i18n="wpf.latency">执行耗时</span><strong id="detailLatency">6 ms</strong></article><article><span data-i18n="wpf.last">最近执行</span><strong id="detailTime">11:26:57</strong></article></div>
+
+          <div class="official-diagnosis-grid">
+            <article class="reason-card official-reason-card failed" id="reasonCard"><div class="reason-head"><span data-i18n="wpf.reason">失败原因</span><span class="reason-code" id="detailCode">TCP_CONNECT_FAILED</span></div><div class="reason-message" id="detailReason">向一个无法连接的网络尝试了一个套接字操作。</div><div class="reason-explain" id="detailExplain">连接在 TCP 建连阶段失败，尚未进入 Infor LN 业务接口。优先检查目标服务监听、Windows 防火墙、网络 ACL 与服务器可达性。</div></article>
+            <article class="impact-card official-impact-card"><div class="card-mini-title" data-i18n="wpf.impact">可能影响</div><div class="impact-value" id="detailImpact">LN 相关报工 / 订单校验 / 报表查询</div><div class="impact-note" id="detailScope">PCS 服务当前正常，故障范围暂时集中在 LN 链路。</div><div class="scope-tag" data-i18n="wpf.scope">影响范围：Infor LN 链路</div></article>
+          </div>
+
+          <article class="action-card official-action-card"><div class="action-head"><div><span class="section-eyebrow">RECOMMENDED ACTIONS</span><h3 data-i18n="wpf.actions">建议排查顺序</h3></div><span class="action-priority">优先处理 · P1</span></div><div class="action-steps official-action-steps" id="detailSteps"><div class="action-step"><span>01</span><div><b>验证端口</b><small>执行 Test-NetConnection 10.209.37.61 -Port 8312</small></div></div><div class="action-step"><span>02</span><div><b>检查服务监听</b><small>确认目标服务器 8312 端口处于 LISTENING 状态</small></div></div><div class="action-step"><span>03</span><div><b>复核网络策略</b><small>检查防火墙、ACL 与跨网段路由后重新执行 Checklist</small></div></div></div></article>
+        </section>
+      </section>
+
+      <footer class="official-runtime-rail"><div class="rail-item"><span data-i18n="wpf.agentid">AgentId</span><strong>5252c7fe-c001-4cb7-a7e5-5f7a8941b9af</strong><button id="copyAgentId" data-i18n="wpf.copy">复制</button></div><div class="rail-item"><span>Agent</span><strong>AGENT-5252C7FEC0014CB7</strong></div><div class="rail-item compact"><span data-i18n="wpf.current">当前版本</span><strong>v3</strong></div><div class="rail-item compact"><span data-i18n="wpf.targetVersion">目标版本</span><strong>—</strong></div><div class="rail-item compact"><span data-i18n="wpf.waitLimit">等待上限</span><strong>30 分钟</strong></div><div class="rail-item compact"><span data-i18n="wpf.updated">最后更新</span><strong id="lastUpdated">2026-08-07 11:26:57</strong></div></footer>
+    </main>
+
+    <div class="pet-launcher official-pet-launcher"><div class="pet-tip">检测到异常，可进行智能分析</div><button class="pet" id="petBtn" aria-label="打开智能助手"><span class="pet-ear l"></span><span class="pet-ear r"></span><span class="pet-face"><span class="pet-eye l"></span><span class="pet-eye r"></span><span class="pet-mouth"></span></span><span class="pet-notify">1</span></button></div>
+    <aside class="assistant-panel official-assistant" id="assistantPanel"><div class="assistant-head"><div class="assistant-ident"><div class="assistant-mini-pet">AI</div><div><div class="assistant-name">数采智能助手</div><div class="assistant-online">● Dify Agent · 在线</div></div></div><div class="assistant-head-actions"><button id="assistantMin" title="最小化">—</button><button id="assistantClose" title="关闭">×</button></div></div><div class="assistant-context">当前上下文：<strong id="assistantContext">PackingTable · Infor LN 连通性失败</strong></div><div class="assistant-messages" id="assistantMessages"><div class="msg bot"><div class="msg-avatar">AI</div><div><div class="bubble">已读取当前工位 Checklist。<strong>Infor LN TCP 连接失败</strong>，可以继续辅助判断网络、端口或服务状态问题。</div><div class="assistant-actions-row"><button class="quick-chip" data-prompt="帮我分析当前异常">分析当前异常</button><button class="quick-chip" data-prompt="给我排查步骤">给我排查步骤</button><button class="quick-chip" data-prompt="这个异常影响什么业务">业务影响</button></div></div></div></div><div class="assistant-compose"><div class="compose-box"><textarea id="assistantInput" placeholder="输入问题，例如：为什么 LN 连不上？"></textarea><button class="send-btn" id="assistantSend">➤</button></div><div class="assistant-footnote">AI 建议用于辅助诊断，执行现场变更前请确认环境。</div></div></aside>
+  </section>
+  <div class="toast"></div>
+  <script src="assets/jquery-3.6.1.min.js"></script><script src="assets/common.js"></script><script src="assets/workstation-assistant.js"></script>
+</body>
+</html>

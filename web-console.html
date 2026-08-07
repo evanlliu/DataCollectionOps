@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>数采智能运维中心</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="web-page">
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo-block" style="width:38px;height:38px;border-radius:11px;font-size:16px">D</div>
+      <div><div class="brand-name">DATA OPS</div><div class="brand-sub">数采智能运维</div></div>
+    </div>
+    <nav class="nav">
+      <div class="nav-item active" data-target="overview"><span class="nav-icon">▦</span><span data-i18n="nav.overview">运行总览</span></div>
+      <div class="nav-item" data-target="station-health"><span class="nav-icon">⌘</span><span data-i18n="nav.factory">工厂与产线</span></div>
+      <div class="nav-item" data-target="agents"><span class="nav-icon">◎</span><span data-i18n="nav.agents">Agent 管理</span></div>
+      <div class="nav-item" data-target="checklist"><span class="nav-icon">☷</span><span data-i18n="nav.checklist">Checklist 配置</span></div>
+      <div class="nav-item" data-target="alerts"><span class="nav-icon">♢</span><span data-i18n="nav.alerts">告警中心</span></div>
+      <div class="nav-item"><span class="nav-icon">◉</span><span data-i18n="nav.language">语言管理</span></div>
+      <div class="nav-item"><span class="nav-icon">⚙</span><span data-i18n="nav.settings">系统设置</span></div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="profile">
+        <div class="avatar">EL</div>
+        <div><div style="font-weight:650" data-i18n="profile.admin">管理员</div><div class="brand-sub">IT · Data Ops</div></div>
+      </div>
+    </div>
+  </aside>
+
+  <section class="main">
+    <header class="topbar">
+      <div><div class="page-headline" data-i18n="top.title">数采智能运维中心</div><div class="muted" style="font-size:10px;margin-top:3px">Mexico Operations · Data Collection</div></div>
+      <div class="top-actions">
+        <span class="status-pill green"><span class="dot green"></span><span data-i18n="status.central">中央服务正常</span></span>
+        <div class="theme-switch" aria-label="主题切换">
+          <button data-theme="dark" class="active" data-i18n="theme.dark">深色</button><button data-theme="light" data-i18n="theme.light">浅色</button>
+        </div>
+        <div class="language-switch" aria-label="语言切换">
+          <span class="language-icon">文</span>
+          <select class="ops-language language-select">
+            <option value="zh-CN">中文</option>
+            <option value="en-US">English</option>
+            <option value="es-MX">Español</option>
+            <option value="th-TH">ไทย</option>
+          </select>
+        </div>
+        <button class="btn icon-btn" title="通知">♢</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="hero-strip" id="overview">
+        <div>
+          <div class="section-eyebrow">Operations Overview</div>
+          <h1 data-i18n="overview.title">运行总览</h1>
+          <p data-i18n="overview.desc">用一张图掌握现场工位、Agent、Checklist 与告警状态，把异常定位时间从“小时级”压缩到“分钟级”。</p>
+        </div>
+        <div class="hero-actions">
+          <span class="data-badge"><span class="dot blue"></span><span data-i18n="overview.timestamp">数据时间 · 2026-08-07 11:15</span></span>
+          <button class="btn primary" id="refreshDashboard"><span data-i18n="overview.refresh">↻ 刷新状态</span></button>
+        </div>
+      </section>
+
+      <section class="grid-4">
+        <article class="card kpi-card"><div class="kpi-label" data-i18n="kpi.stations">纳管工位</div><div class="kpi-number">42</div><div class="kpi-trend" data-i18n="kpi.stationsTrend">39 正常 · 3 异常</div></article>
+        <article class="card kpi-card"><div class="kpi-label" data-i18n="kpi.agents">在线 Agent</div><div class="kpi-number">40<span style="font-size:16px;color:var(--muted)"> / 42</span></div><div class="kpi-trend" data-i18n="kpi.agentsTrend">在线率 95.2%</div></article>
+        <article class="card kpi-card"><div class="kpi-label" data-i18n="kpi.checks">今日自动检查</div><div class="kpi-number">1,286</div><div class="kpi-trend" data-i18n="kpi.checksTrend">98.7% 自动完成</div></article>
+        <article class="card kpi-card"><div class="kpi-label" data-i18n="kpi.alerts">待处理异常</div><div class="kpi-number text-red">5</div><div class="kpi-trend" data-i18n="kpi.alertsTrend">其中 2 项为 Critical</div></article>
+      </section>
+
+      <section class="digital-twin-layout" id="station-health">
+        <article class="card digital-twin-card">
+          <div class="card-head twin-head">
+            <div>
+              <div class="section-eyebrow">STATION OPERATIONS TOPOLOGY</div>
+              <div class="card-title twin-title" data-i18n="map.title">工位数字孪生状态场</div>
+              <div class="card-subtitle" data-i18n="map.subtitle">以工厂拓扑视角实时呈现工位健康、Agent、Checklist 与版本切换状态；点击任意工位进入诊断详情。</div>
+            </div>
+            <div class="twin-actions">
+              <div class="segmented" id="stationFilter">
+                <button class="active" data-filter="all" data-i18n="map.all">全部</button>
+                <button data-filter="failed" data-i18n="map.failed">异常</button>
+                <button data-filter="switching" data-i18n="map.switching">切换中</button>
+                <button data-filter="healthy" data-i18n="map.healthy">健康</button>
+              </div>
+              <span class="live-badge"><i></i><span data-i18n="map.live">LIVE · 5s 自动刷新</span></span>
+            </div>
+          </div>
+          <div class="twin-body">
+            <div class="twin-overview-strip">
+              <div class="twin-stat"><span>Plant B</span><strong>12</strong><small>11 Healthy</small></div>
+              <div class="twin-stat"><span>Plant D</span><strong>14</strong><small class="text-red">2 Attention</small></div>
+              <div class="twin-stat"><span>Plant G</span><strong>9</strong><small class="text-yellow">1 Switching</small></div>
+              <div class="twin-stat"><span>Plant H</span><strong>7</strong><small class="text-red">1 Offline</small></div>
+              <div class="twin-health-ring"><div class="ring-value">92.8<small>%</small></div><span>Fleet Health</span></div>
+            </div>
+            <div class="factory-scene" id="factoryScene">
+              <div class="factory-floor"></div>
+              <div class="zone-label z-b">PLANT B</div><div class="zone-label z-d">PLANT D</div><div class="zone-label z-g">PLANT G</div><div class="zone-label z-h">PLANT H</div>
+              <svg class="factory-links" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+                <defs><linearGradient id="linkGlow" x1="0" x2="1"><stop offset="0" stop-color="#4f8cff" stop-opacity=".15"/><stop offset=".5" stop-color="#55d8c5" stop-opacity=".75"/><stop offset="1" stop-color="#4f8cff" stop-opacity=".15"/></linearGradient></defs>
+                <path d="M150 150 C300 70 430 95 510 178 S720 290 855 155"/><path d="M150 150 C235 265 340 340 495 360 S740 390 855 155"/><path d="M510 178 C515 260 510 310 495 360"/><path d="M290 245 C425 215 610 215 720 250"/>
+              </svg>
+              <button class="station-node healthy" data-status="healthy" data-station="TXV-V3" style="--x:15%;--y:27%;--lift:18px"><span class="node-beam"></span><span class="node-icon">TXV</span><span class="node-copy"><b>TXV-V3</b><small>Plant B · Auto Report</small></span><span class="node-score">100</span></button>
+              <button class="station-node healthy" data-status="healthy" data-station="PD20-Line" style="--x:29%;--y:46%;--lift:10px"><span class="node-beam"></span><span class="node-icon">PD</span><span class="node-copy"><b>PD20-Line</b><small>Plant B · PCS</small></span><span class="node-score">98</span></button>
+              <button class="station-node failed" data-status="failed" data-station="PackingTable" style="--x:51%;--y:33%;--lift:34px"><span class="node-beam"></span><span class="node-icon">PK</span><span class="node-copy"><b>PackingTable</b><small>Plant D · Packaging</small></span><span class="node-score">82</span><span class="node-alert">!</span></button>
+              <button class="station-node healthy" data-status="healthy" data-station="GP12" style="--x:41%;--y:64%;--lift:12px"><span class="node-beam"></span><span class="node-icon">GP</span><span class="node-copy"><b>GP12</b><small>Plant D · Quality</small></span><span class="node-score">100</span></button>
+              <button class="station-node switching" data-status="switching" data-station="GTC-Upload" style="--x:72%;--y:48%;--lift:25px"><span class="node-beam"></span><span class="node-icon">GTC</span><span class="node-copy"><b>GTC-Upload</b><small>Plant G · File Upload</small></span><span class="node-score">91</span><span class="node-spin">↻</span></button>
+              <button class="station-node healthy" data-status="healthy" data-station="EWP-80W" style="--x:61%;--y:70%;--lift:10px"><span class="node-beam"></span><span class="node-icon">EWP</span><span class="node-copy"><b>EWP-80W</b><small>Plant G · Traceability</small></span><span class="node-score">99</span></button>
+              <button class="station-node failed" data-status="failed" data-station="LN-Report" style="--x:86%;--y:29%;--lift:30px"><span class="node-beam"></span><span class="node-icon">LN</span><span class="node-copy"><b>LN-Report</b><small>Plant H · Report</small></span><span class="node-score">74</span><span class="node-alert">!</span></button>
+              <button class="station-node healthy" data-status="healthy" data-station="6PV" style="--x:84%;--y:70%;--lift:8px"><span class="node-beam"></span><span class="node-icon">6PV</span><span class="node-copy"><b>6PV-Line</b><small>Plant H · Production</small></span><span class="node-score">97</span></button>
+              <div class="scene-center-orb"><span class="orb-pulse"></span><b>OPS</b><small>Central</small></div>
+            </div>
+            <div class="twin-legend">
+              <span><i class="legend-dot healthy"></i><em data-i18n="map.legendHealthy">健康</em><b>39</b></span>
+              <span><i class="legend-dot switching"></i><em data-i18n="map.legendWarning">切换中</em><b>1</b></span>
+              <span><i class="legend-dot failed"></i><em data-i18n="map.legendFailed">异常 / 离线</em><b>3</b></span>
+              <div class="legend-hint">Drag-free · Click station to inspect</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card alert-command" id="alerts">
+          <div class="card-head"><div><div class="card-title" data-i18n="alerts.title">实时告警</div><div class="card-subtitle" data-i18n="alerts.subtitle">按影响等级排序，快速判断是否需要人工介入。</div></div><span class="status-pill red" data-i18n="alerts.pending">5 待处理</span></div>
+          <div class="card-body" style="padding-top:6px">
+            <div class="alert-list">
+              <div class="alert-item"><div class="alert-icon">!</div><div><div class="alert-title">PackingTable · Infor LN</div><div class="alert-desc">TCP 10.209.37.61:8312 · CONNECT FAILED</div></div><div class="alert-time">3m</div></div>
+              <div class="alert-item"><div class="alert-icon" style="background:rgba(245,191,79,.08);color:var(--yellow)">↻</div><div><div class="alert-title">GTC-Upload · v7</div><div class="alert-desc">Checklist version switch preparing</div></div><div class="alert-time">8m</div></div>
+              <div class="alert-item"><div class="alert-icon">!</div><div><div class="alert-title">LN-Report · Agent</div><div class="alert-desc">Heartbeat timeout · Offline</div></div><div class="alert-time">21m</div></div>
+              <div class="alert-item"><div class="alert-icon" style="background:rgba(56,214,164,.08);color:var(--green)">✓</div><div><div class="alert-title">TXV-V3 · PCS</div><div class="alert-desc">Recovered · 3 consecutive passes</div></div><div class="alert-time">36m</div></div>
+            </div>
+            <div class="alert-insight">
+              <div class="insight-orb">AI</div><div><b>智能研判</b><p>当前 3 个异常中，2 个集中在 LN 链路；建议优先检查 Plant D / H 到 LN 服务端的网络路径。</p></div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="card section-block" id="checklist">
+        <div class="card-head">
+          <div><div class="card-title" data-i18n="checklist.title">Checklist 版本管理</div><div class="card-subtitle" data-i18n="checklist.subtitle">每个工位独立维护版本：草稿可编辑、已发布版本永久只读，发布后由管理员手动分配。</div></div>
+          <div class="inline"><select class="form-control" style="width:230px"><option>PackingTable · 包装台</option><option>GTC-Upload · 文件上传工位</option></select><button class="btn primary" id="newDraftBtn" data-i18n="checklist.newDraft">＋ 新建草稿</button></div>
+        </div>
+        <div class="tabs"><div class="tab active" data-tab="versions" data-i18n="checklist.versions">版本库</div><div class="tab" data-tab="assignment" data-i18n="checklist.assignment">分配与同步</div><div class="tab" data-tab="audit" data-i18n="checklist.audit">变更记录</div></div>
+        <div class="card-body tab-panel" id="versionsPanel">
+          <div class="version-toolbar"><div class="inline"><span class="status-pill green">当前运行 v3</span><span class="status-pill blue">最新发布 v4</span><span class="status-pill yellow">草稿 v5</span></div><div class="muted" style="font-size:11px">同一工位最多保留 1 份草稿</div></div>
+          <div style="overflow:auto">
+            <table class="version-table">
+              <thead><tr><th>版本</th><th>状态</th><th>来源</th><th>分组 / 检查项</th><th>创建时间</th><th>发布说明</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td><span class="version-badge">v5</span></td><td><span class="status-pill yellow">草稿</span></td><td>复制 v4</td><td>3 组 / 6 项</td><td>2026-08-07 10:26</td><td class="muted">—</td><td><button class="btn sm">继续编辑</button> <button class="btn sm danger">删除</button></td></tr>
+                <tr><td><span class="version-badge">v4</span></td><td><span class="status-pill blue">已发布</span></td><td>复制 v3</td><td>3 组 / 6 项</td><td>2026-08-07 09:40</td><td>新增 FT API 连通性检查</td><td><button class="btn sm assign-version" data-version="v4">分配</button> <button class="btn sm">复制为草稿</button></td></tr>
+                <tr><td><span class="version-badge version-current">v3</span></td><td><span class="status-pill green">当前运行</span></td><td>复制 v2</td><td>2 组 / 3 项</td><td>2026-08-06 16:15</td><td>调整 LN 超时为 5 秒</td><td><button class="btn sm" disabled style="opacity:.45">当前版本</button> <button class="btn sm">复制为草稿</button></td></tr>
+                <tr><td><span class="version-badge">v2</span></td><td><span class="status-pill blue">已发布</span></td><td>初始版本</td><td>2 组 / 3 项</td><td>2026-08-05 14:20</td><td>首版 Checklist</td><td><button class="btn sm assign-version" data-version="v2">回滚分配</button> <button class="btn sm">查看</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-body tab-panel" id="assignmentPanel" style="display:none">
+          <div class="grid-3">
+            <div class="detail-box"><small>当前运行版本</small><strong class="text-green" style="font-size:20px">v3</strong><div class="station-meta">Agent 已确认 · 11:03:22</div></div>
+            <div class="detail-box"><small>待生效版本</small><strong style="font-size:20px">—</strong><div class="station-meta">当前无待切换版本</div></div>
+            <div class="detail-box"><small>版本切换等待上限</small><strong style="font-size:20px">30 分钟</strong><div class="station-meta">按工位配置 · 修改后立即生效</div></div>
+          </div>
+          <div style="margin-top:22px;font-weight:700">版本生效链路</div>
+          <div class="sync-timeline">
+            <div class="sync-step done"><div class="sync-dot"></div><div>管理员分配</div></div>
+            <div class="sync-step done"><div class="sync-dot"></div><div>Agent 下载</div></div>
+            <div class="sync-step done"><div class="sync-dot"></div><div>等待任务结束</div></div>
+            <div class="sync-step done"><div class="sync-dot"></div><div>原子切换</div></div>
+            <div class="sync-step done"><div class="sync-dot"></div><div>Agent 确认</div></div>
+            <div class="sync-step done"><div class="sync-dot"></div><div>中央标记生效</div></div>
+          </div>
+        </div>
+        <div class="card-body tab-panel" id="auditPanel" style="display:none">
+          <div class="alert-list">
+            <div class="alert-item"><div class="alert-icon" style="background:rgba(79,140,255,.08);color:#82b4ff">v4</div><div><div class="alert-title">发布 Checklist v4</div><div class="alert-desc">管理员 Evan · 新增 FT API 连通性检查 · 2026-08-07 09:40</div></div></div>
+            <div class="alert-item"><div class="alert-icon" style="background:rgba(56,214,164,.08);color:var(--green)">v3</div><div><div class="alert-title">Agent 确认 v3 生效</div><div class="alert-desc">AGENT-5252C7FEC0014CB7 · 2026-08-06 16:22</div></div></div>
+            <div class="alert-item"><div class="alert-icon" style="background:rgba(245,191,79,.08);color:var(--yellow)">↻</div><div><div class="alert-title">v3 替换待生效 v2</div><div class="alert-desc">管理员 Evan · 原因：LN 参数调整后直接切换到 v3 · 2026-08-06 16:18</div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid-2 section-block" id="agents">
+        <article class="card"><div class="card-head"><div><div class="card-title" data-i18n="agents.title">Agent 实时状态</div><div class="card-subtitle" data-i18n="agents.subtitle">现场 Agent 主动上报心跳、当前版本和正在运行的检查任务。</div></div><span class="status-pill green">40 在线</span></div><div class="card-body"><div class="grid-3"><div><div class="kpi-label">平均心跳延迟</div><div class="kpi-number" style="font-size:24px">1.8s</div></div><div><div class="kpi-label">版本一致率</div><div class="kpi-number" style="font-size:24px">97.6%</div></div><div><div class="kpi-label">切换中</div><div class="kpi-number text-yellow" style="font-size:24px">1</div></div></div><div class="progress" style="margin-top:20px"><span style="width:95%"></span></div><div class="between" style="margin-top:9px;font-size:11px;color:var(--muted)"><span>在线覆盖率</span><span>95.2%</span></div></div></article>
+        <article class="card"><div class="card-head"><div><div class="card-title" data-i18n="value.title">管理价值</div><div class="card-subtitle" data-i18n="value.subtitle">把现场经验沉淀为可版本化、可审计、可自动执行的标准诊断能力。</div></div></div><div class="card-body"><div class="grid-2"><div class="detail-box"><small>问题发现</small><strong>主动巡检</strong><div class="station-meta">不等用户报障</div></div><div class="detail-box"><small>问题定位</small><strong>失败原因直显</strong><div class="station-meta">降低排查门槛</div></div><div class="detail-box"><small>配置治理</small><strong>版本化发布</strong><div class="station-meta">可回滚、可审计</div></div><div class="detail-box"><small>现场变更</small><strong>无重启热切换</strong><div class="station-meta">减少现场中断</div></div></div></div></article>
+      </section>
+    </main>
+  </section>
+</div>
+
+<div class="drawer-mask" id="stationDrawer">
+  <aside class="drawer station-detail-drawer">
+    <button class="btn icon-btn drawer-close">×</button>
+    <div class="drawer-hero">
+      <span class="data-badge" id="drawerStatusBadge"><span class="dot red"></span><span id="drawerBadgeText" data-i18n="drawer.badge.failed">异常工位</span></span>
+      <div class="drawer-health-orb" id="drawerHealthOrb"><strong id="drawerHealthScore">82</strong><small>/100</small></div>
+    </div>
+    <h2 id="drawerStationName">PackingTable · 包装台</h2>
+    <div class="muted" id="drawerStationMeta">LAP-MX3-IT-217 · Plant D · AGENT-5252C7FEC0014CB7</div>
+    <div class="detail-grid">
+      <div class="detail-box"><small data-i18n="drawer.health">健康分</small><strong id="drawerHealthText" class="text-red">82 / 100</strong></div>
+      <div class="detail-box"><small data-i18n="drawer.version">当前版本</small><strong id="drawerVersion">v3</strong></div>
+      <div class="detail-box"><small data-i18n="drawer.agent">Agent</small><strong id="drawerAgent" class="text-green" data-i18n="drawer.connected">已连接</strong></div>
+      <div class="detail-box"><small data-i18n="drawer.last">最后检查</small><strong id="drawerLast">11:12:26</strong></div>
+    </div>
+    <div class="drawer-section-title" data-i18n="drawer.checks">Checklist 检查</div>
+    <div id="drawerChecks"></div>
+    <div class="drawer-mini-chart"><div class="mini-chart-head"><span>24H Health Trend</span><strong id="drawerTrend">82 → 82</strong></div><div class="sparkline"><i style="height:46%"></i><i style="height:62%"></i><i style="height:58%"></i><i style="height:76%"></i><i style="height:72%"></i><i style="height:85%"></i><i style="height:82%"></i></div></div>
+    <div class="divider" style="margin:20px 0"></div>
+    <div class="between"><button class="btn" data-i18n="drawer.logs">查看完整日志</button><button class="btn primary" id="drawerCheckBtn" data-i18n="drawer.recheck">立即检查</button></div>
+  </aside>
+</div>
+
+<div class="modal-mask" id="assignModal"><div class="modal"><div class="between"><div><div class="card-title">分配 Checklist 版本</div><div class="card-subtitle">发布和分配分离；Agent 完成切换并确认后，中央平台才更新当前版本。</div></div><button class="btn icon-btn modal-close">×</button></div><div class="form-row"><label>工位</label><input class="form-control" value="PackingTable · 包装台" readonly></div><div class="form-row"><label>目标版本</label><input class="form-control" id="targetVersion" value="v4" readonly></div><div class="form-row"><label>分配原因</label><textarea class="form-control" rows="3">Checklist v4 已完成发布审核，申请分配至当前工位。</textarea></div><div class="between" style="margin-top:20px"><span class="muted" style="font-size:11px">若已有待生效版本，将被本次版本替换并记录日志。</span><div class="inline"><button class="btn modal-close">取消</button><button class="btn primary" id="confirmAssign">确认分配</button></div></div></div></div>
+<div class="toast"></div>
+
+<script src="assets/jquery-3.6.1.min.js"></script>
+<script src="assets/common.js"></script>
+<script src="assets/web-console.js"></script>
+</body>
+</html>
