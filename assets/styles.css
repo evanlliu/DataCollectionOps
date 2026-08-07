@@ -276,3 +276,376 @@ button{color:inherit}
 [data-theme="light"] .official-assistant .assistant-footnote{color:#7a8ca1}
 [data-theme="light"] .official-pet-launcher .pet-notify{border-color:#eef3f8}
 [data-theme="dark"] .official-pet-launcher .pet-notify{border-color:#111923}
+
+/* =========================================================
+   WPF DEMO · single-screen workstation layout
+   Main viewport never scrolls vertically. Only checklist items may scroll.
+   ========================================================= */
+.official-wpf-body{
+  width:100vw;
+  height:100vh;
+  min-height:0;
+  padding:12px;
+  overflow:hidden;
+}
+.official-wpf-window{
+  width:100%;
+  height:100%;
+  min-height:0;
+  max-width:1880px;
+  max-height:1040px;
+  grid-template-rows:58px minmax(0,1fr);
+}
+.official-titlebar{
+  min-height:0;
+  padding-left:16px;
+}
+.official-brand{gap:10px}
+.official-brand-title{font-size:14px}
+.official-brand-sub{font-size:9px}
+.official-station-context{gap:8px;margin-right:14px;min-width:0}
+.official-station-context .status-pill{white-space:nowrap}
+.official-title-actions{gap:7px;min-width:0}
+.official-language-switch{height:32px}
+.official-titlebar .window-control{width:40px}
+
+.official-wpf-content{
+  min-height:0;
+  height:100%;
+  padding:10px;
+  gap:10px;
+  overflow:hidden;
+  grid-template-rows:94px minmax(0,1fr) 50px;
+}
+
+.official-status-overview{
+  min-height:0;
+  height:94px;
+  grid-template-columns:minmax(320px,1.05fr) minmax(430px,1.05fr) 180px;
+  gap:14px;
+  padding:11px 14px;
+  border-radius:12px;
+  overflow:hidden;
+}
+.official-health-summary{gap:12px;min-width:0}
+.health-symbol{width:46px;height:46px;border-radius:11px;font-size:24px;flex:none}
+.official-health-line{gap:8px;margin-top:1px;min-width:0}
+.official-health-line strong{font-size:23px;white-space:nowrap}
+.official-health-line .active-chip{white-space:nowrap}
+.official-health-summary p{
+  max-width:540px;
+  margin:3px 0 0;
+  font-size:11px;
+  line-height:1.35;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.official-overview-metrics{min-width:0;height:58px;align-items:center}
+.official-overview-metrics article{min-width:0;padding:1px 11px}
+.official-overview-metrics span,.official-overview-metrics small{font-size:10px;white-space:nowrap}
+.official-overview-metrics strong{font-size:18px;margin:4px 0 2px;white-space:nowrap}
+.official-runall{
+  width:100%;
+  height:56px;
+  min-width:0;
+  border-radius:10px;
+  gap:10px;
+  padding:0 12px;
+  box-shadow:0 6px 14px rgba(47,111,237,.16);
+}
+.official-runall b{font-size:13px;white-space:nowrap}
+.official-runall small{font-size:9px;white-space:nowrap}
+.official-runall .runall-icon{width:27px;height:27px;border-radius:7px;flex:none}
+
+.official-workspace{
+  min-height:0;
+  height:100%;
+  grid-template-columns:minmax(310px,28%) minmax(0,1fr);
+  gap:10px;
+  overflow:hidden;
+}
+.official-checklist-panel,.official-diagnosis-panel{
+  min-height:0;
+  height:100%;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+/* Checklist header + footer are fixed. Only this middle list can scroll. */
+.official-checklist-panel{
+  padding:14px;
+  grid-template-rows:auto minmax(0,1fr) auto;
+}
+.official-panel-head{margin-bottom:9px;gap:10px}
+.official-panel-head h2{font-size:19px;margin:1px 0 3px}
+.official-panel-head p{
+  max-width:300px;
+  font-size:10px;
+  line-height:1.35;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.official-panel-head .section-eyebrow{font-size:9px}
+.panel-count{padding:5px 7px;font-size:10px;border-radius:7px;white-space:nowrap}
+.official-check-nav{
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  scrollbar-gutter:stable;
+  padding-right:5px;
+  gap:7px;
+}
+.official-check-nav::-webkit-scrollbar{width:6px}
+.official-check-nav::-webkit-scrollbar-track{background:transparent}
+.official-check-nav::-webkit-scrollbar-thumb{background:rgba(115,134,161,.35);border-radius:999px}
+.official-check-nav::-webkit-scrollbar-thumb:hover{background:rgba(115,134,161,.55)}
+.official-check-item{
+  min-height:68px;
+  padding:9px 11px;
+  border-radius:9px;
+  gap:10px;
+  flex:none;
+}
+.official-check-item .nav-main b{font-size:14px}
+.official-check-item .nav-main small{font-size:10px;margin-top:3px}
+.official-check-item .nav-state{font-size:12px}
+.official-check-item .nav-arrow{font-size:21px}
+.official-checklist-summary{
+  padding-top:8px;
+  margin-top:8px;
+  gap:6px;
+}
+.official-checklist-summary>div{padding:7px 8px;border-radius:8px;gap:6px}
+.official-checklist-summary span:not(.dot){font-size:10px}
+.official-checklist-summary strong{font-size:15px}
+
+/* Diagnosis stays fully visible; it never becomes its own scroll container. */
+.official-diagnosis-panel{
+  padding:15px 16px;
+  display:grid;
+  grid-template-rows:auto auto minmax(0,1fr) auto;
+  gap:9px;
+  overflow:hidden;
+}
+.official-diagnosis-header{gap:14px;min-height:0}
+.diagnosis-title-wrap{min-width:0}
+.diagnosis-kicker{font-size:10px}
+.official-diagnosis-title{gap:8px;margin-top:3px;min-width:0}
+.official-diagnosis-title h1{
+  min-width:0;
+  font-size:22px;
+  line-height:1.2;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.official-diagnosis-header p{
+  max-width:760px;
+  font-size:11px;
+  line-height:1.35;
+  margin:4px 0 0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.diagnosis-top-actions{flex:none;gap:7px}
+.diagnosis-top-actions .detail-btn{padding:8px 11px;font-size:11px;white-space:nowrap}
+.official-diagnosis-metrics{gap:7px;min-height:0}
+.official-diagnosis-metrics article{padding:8px 11px;border-radius:8px;min-width:0}
+.official-diagnosis-metrics span{font-size:9px}
+.official-diagnosis-metrics strong{font-size:13px;margin-top:3px}
+
+.official-diagnosis-grid{
+  min-height:0;
+  height:100%;
+  grid-template-columns:minmax(0,1.45fr) minmax(245px,.72fr);
+  gap:8px;
+  overflow:hidden;
+}
+.official-reason-card,.official-impact-card{
+  min-height:0;
+  height:100%;
+  border-radius:9px;
+  overflow:hidden;
+}
+.official-reason-card{padding:12px 13px!important}
+.official-reason-card .reason-head{font-size:11px;gap:8px}
+.official-reason-card .reason-code{font-size:9px;padding:4px 6px}
+.official-reason-card .reason-message{
+  font-size:16px;
+  line-height:1.32;
+  margin-top:9px;
+}
+.official-reason-card .reason-explain{
+  font-size:11px;
+  line-height:1.48;
+  margin-top:7px;
+}
+.official-impact-card{padding:12px 13px}
+.official-impact-card .card-mini-title{font-size:10px}
+.official-impact-card .impact-value{font-size:14px;line-height:1.35;margin-top:7px}
+.official-impact-card .impact-note{font-size:10px;line-height:1.45;margin-top:6px}
+.scope-tag{margin-top:8px;padding:4px 6px;font-size:9px;border-radius:6px}
+
+.official-action-card{
+  min-height:0;
+  padding:10px 12px;
+  border-radius:9px;
+  overflow:hidden;
+}
+.official-action-card .action-head h3{font-size:14px;margin:1px 0 0}
+.official-action-card .section-eyebrow{font-size:8px}
+.action-priority{font-size:9px;padding:4px 7px;border-radius:6px;white-space:nowrap}
+.official-action-steps{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:7px;
+  margin-top:7px;
+}
+.official-action-steps .action-step{
+  min-width:0;
+  gap:8px;
+  padding:8px 9px;
+  border-radius:8px;
+}
+.official-action-steps .action-step>span{width:25px;height:25px;border-radius:7px;font-size:9px}
+.official-action-steps b{font-size:11px;line-height:1.25}
+.official-action-steps small{
+  font-size:9px;
+  line-height:1.35;
+  margin-top:3px;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+.official-runtime-rail{
+  min-height:0;
+  height:50px;
+  grid-template-columns:1.55fr 1.25fr .55fr .55fr .7fr .92fr;
+  border-radius:9px;
+  overflow:hidden;
+}
+.official-runtime-rail .rail-item{
+  min-width:0;
+  height:100%;
+  padding:6px 10px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.official-runtime-rail .rail-item span{font-size:9px}
+.official-runtime-rail .rail-item strong{
+  min-width:0;
+  font-size:10px;
+  margin-top:2px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.official-runtime-rail .rail-item:first-child{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;column-gap:6px;align-content:center}
+.official-runtime-rail .rail-item:first-child span{grid-column:1/3}
+.official-runtime-rail .rail-item:first-child strong{grid-column:1}
+.official-runtime-rail .rail-item:first-child button{grid-column:2;grid-row:2;padding:2px 6px;font-size:9px;border-radius:5px}
+
+.official-pet-launcher{right:24px;bottom:66px}
+.official-assistant{top:70px;right:14px;bottom:66px;width:min(420px,calc(100% - 28px))}
+
+/* Narrow desktop: preserve horizontal diagnosis composition instead of stacking. */
+@media(max-width:1500px){
+  .official-status-overview{grid-template-columns:minmax(300px,.95fr) minmax(410px,1.05fr) 168px;gap:10px}
+  .official-overview-metrics article{padding:1px 8px}
+  .official-workspace{grid-template-columns:minmax(300px,27%) minmax(0,1fr)}
+  .official-diagnosis-grid{grid-template-columns:minmax(0,1.4fr) minmax(225px,.68fr)}
+  .official-action-steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .official-runtime-rail{grid-template-columns:1.4fr 1.15fr repeat(4,.62fr)}
+}
+
+@media(max-width:1380px){
+  .official-wpf-body{padding:8px}
+  .official-wpf-window{border-radius:10px}
+  .official-titlebar{grid-template-columns:minmax(240px,1fr) auto auto;padding-left:12px}
+  .official-station-context{gap:6px;margin-right:8px}
+  .official-station-context .status-pill{padding:5px 7px;font-size:10px}
+  .station-name{font-size:11px;padding-right:7px}
+  .compact-theme button{padding:4px 6px;font-size:10px}
+  .official-language-switch{height:30px}
+  .official-status-overview{grid-template-columns:minmax(285px,.9fr) minmax(390px,1.05fr) 158px;padding:9px 11px}
+  .official-health-line strong{font-size:21px}
+  .official-overview-metrics article{padding:1px 6px}
+  .official-runall{height:52px;padding:0 9px}
+  .official-workspace{grid-template-columns:300px minmax(0,1fr)}
+  .official-checklist-panel{padding:12px}
+  .official-diagnosis-panel{padding:13px 14px}
+  .official-diagnosis-title h1{font-size:20px}
+  .official-diagnosis-grid{grid-template-columns:minmax(0,1.38fr) minmax(220px,.7fr)}
+  .official-reason-card .reason-message{font-size:15px}
+  .official-impact-card .impact-value{font-size:13px}
+}
+
+/* Compact-height mode for 1366x768-class workstation screens. */
+@media(max-height:850px){
+  .official-wpf-body{padding:8px}
+  .official-wpf-window{grid-template-rows:54px minmax(0,1fr);border-radius:10px}
+  .official-wpf-content{
+    padding:8px;
+    gap:8px;
+    grid-template-rows:84px minmax(0,1fr) 44px;
+  }
+  .official-status-overview{height:84px;padding:8px 11px;gap:10px}
+  .health-symbol{width:40px;height:40px;font-size:21px}
+  .official-health-line strong{font-size:20px}
+  .official-health-summary p{font-size:10px;margin-top:2px}
+  .official-overview-metrics{height:50px}
+  .official-overview-metrics span,.official-overview-metrics small{font-size:9px}
+  .official-overview-metrics strong{font-size:16px;margin:2px 0 1px}
+  .official-runall{height:48px}
+  .official-runall .runall-icon{width:24px;height:24px}
+  .official-workspace{gap:8px}
+  .official-checklist-panel{padding:10px}
+  .official-panel-head{margin-bottom:6px}
+  .official-panel-head h2{font-size:17px;margin:0 0 2px}
+  .official-panel-head p{font-size:9px}
+  .panel-count{padding:4px 6px;font-size:9px}
+  .official-check-nav{gap:5px}
+  .official-check-item{min-height:58px;padding:7px 9px;gap:8px}
+  .official-check-item .nav-main b{font-size:12px}
+  .official-check-item .nav-main small{font-size:9px;margin-top:2px}
+  .official-check-item .nav-state{font-size:11px}
+  .official-checklist-summary{padding-top:6px;margin-top:6px}
+  .official-checklist-summary>div{padding:5px 7px}
+  .official-checklist-summary strong{font-size:13px}
+  .official-diagnosis-panel{padding:10px 11px;gap:6px}
+  .official-diagnosis-title{margin-top:1px}
+  .official-diagnosis-title h1{font-size:18px}
+  .official-diagnosis-header p{font-size:10px;margin-top:2px}
+  .diagnosis-top-actions .detail-btn{padding:6px 8px;font-size:10px}
+  .official-diagnosis-metrics{gap:5px}
+  .official-diagnosis-metrics article{padding:6px 8px}
+  .official-diagnosis-metrics strong{font-size:12px;margin-top:2px}
+  .official-diagnosis-grid{gap:6px}
+  .official-reason-card{padding:9px 10px!important}
+  .official-reason-card .reason-message{font-size:13px;line-height:1.25;margin-top:5px}
+  .official-reason-card .reason-explain{font-size:9.5px;line-height:1.35;margin-top:4px}
+  .official-impact-card{padding:9px 10px}
+  .official-impact-card .impact-value{font-size:12px;line-height:1.25;margin-top:4px}
+  .official-impact-card .impact-note{font-size:9px;line-height:1.3;margin-top:4px}
+  .scope-tag{margin-top:5px;padding:3px 5px;font-size:8px}
+  .official-action-card{padding:7px 9px}
+  .official-action-card .action-head h3{font-size:12px}
+  .action-priority{font-size:8px;padding:3px 5px}
+  .official-action-steps{gap:5px;margin-top:5px}
+  .official-action-steps .action-step{padding:6px 7px;gap:6px}
+  .official-action-steps .action-step>span{width:22px;height:22px;font-size:8px}
+  .official-action-steps b{font-size:10px}
+  .official-action-steps small{font-size:8px;line-height:1.25;margin-top:2px}
+  .official-runtime-rail{height:44px}
+  .official-runtime-rail .rail-item{padding:4px 8px}
+  .official-runtime-rail .rail-item span{font-size:8px}
+  .official-runtime-rail .rail-item strong{font-size:9px;margin-top:1px}
+  .official-pet-launcher{bottom:56px}
+  .official-assistant{top:62px;bottom:56px}
+}
