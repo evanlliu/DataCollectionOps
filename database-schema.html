@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>数据库架构 · 数采智能运维中心</title>
+<link href="assets/styles.css" rel="stylesheet"/>
+</head>
+<body class="web-page db-page">
+<div class="app-shell">
+<aside class="sidebar">
+<div class="brand">
+<div class="logo-block" style="width:38px;height:38px;border-radius:11px;font-size:16px">D</div>
+<div><div class="brand-name">数采运维</div><div class="brand-sub">数采智能运维</div></div>
+</div>
+<nav class="nav nav-formal-template"><div class="nav-section-label">运行态势</div>
+<a class="nav-item" href="web-console.html#overview"><span class="nav-icon">▦</span><span data-i18n="nav.overview">运行总览</span></a>
+<div class="nav-section-label nav-section-gap">运维配置</div><a class="nav-item" href="web-console.html#organization"><span class="nav-icon">⌘</span><span data-i18n="nav.organization">组织架构</span></a>
+<a class="nav-item" href="web-console.html#master-data"><span class="nav-icon">▥</span><span data-i18n="nav.masterData">基础数据</span></a>
+<a class="nav-item" href="web-console.html#agents"><span class="nav-icon">◎</span><span data-i18n="nav.agents">采集代理管理</span></a>
+<a class="nav-item" href="web-console.html#stations"><span class="nav-icon">◫</span><span data-i18n="nav.stations">工位管理</span></a>
+<a class="nav-item" href="web-console.html#templates"><span class="nav-icon">▧</span><span data-i18n="nav.templates">检查清单模板</span></a>
+<a class="nav-item" href="web-console.html#checklist"><span class="nav-icon">☷</span><span data-i18n="nav.checklist">检查清单配置</span></a>
+<a class="nav-item" href="web-console.html#alerts"><span class="nav-icon">♢</span><span data-i18n="nav.alerts">告警中心</span></a>
+<div class="nav-section-label nav-section-gap">平台管理</div><a class="nav-item active" href="database-schema.html"><span class="nav-icon">▤</span><span data-db-i18n="nav.database">数据库架构</span></a>
+<div class="nav-item" data-action="language"><span class="nav-icon">◉</span><span data-i18n="nav.language">语言管理</span></div>
+<div class="nav-item" data-action="settings"><span class="nav-icon">⚙</span><span data-i18n="nav.settings">系统设置</span></div>
+</nav>
+<div class="sidebar-footer">
+<div class="profile"><div class="avatar">EL</div><div><div data-i18n="profile.admin" style="font-weight:650">管理员</div><div class="brand-sub">信息技术部 · 数采运维</div></div></div>
+</div>
+</aside>
+<section class="main db-main">
+<header class="topbar">
+<div><div class="page-headline" data-db-i18n="top.database">数据库架构</div><div class="muted" style="font-size:10px;margin-top:3px">Db_DataCollectionOps · SQL Server</div></div>
+<div class="top-actions">
+<span class="status-pill green"><span class="dot green"></span><span data-db-i18n="status.schemaReady">架构就绪</span></span>
+<div aria-label="主题切换" class="theme-switch"><button data-i18n="theme.dark" data-theme="dark">深色</button><button class="active" data-i18n="theme.light" data-theme="light">浅色</button></div>
+<div aria-label="当前语言" class="language-switch language-fixed"><span class="language-icon">文</span><span class="language-fixed-label">简体中文</span></div>
+<button class="btn icon-btn" title="通知">♢</button>
+</div>
+</header>
+<main class="content db-content">
+<section class="hero-strip db-hero">
+<div>
+<div class="section-eyebrow">数据库蓝图</div>
+<h1 data-db-i18n="hero.title">运维平台数据库架构</h1>
+<p data-db-i18n="hero.desc">从组织与配置、采集代理、执行监控、多语言到审计集成，完整展示系统数据模型与表间关系。</p>
+</div>
+<div class="hero-actions db-hero-actions">
+<span class="data-badge"><span class="dot blue"></span>Db_DataCollectionOps · SQL Server</span>
+<a class="btn primary db-export-btn" download="DataCollectionOps-Database-Table-Interface.xlsx" href="exports/DataCollectionOps-Database-Table-Interface.xlsx"><span>⇩</span><span data-db-i18n="export.excel">导出数据库表结构</span></a>
+</div>
+</section>
+<section class="db-kpi-grid" id="dbKpis"></section>
+<section class="db-architecture-grid">
+<article class="card db-domain-board">
+<div class="db-card-head">
+<div><div class="section-eyebrow">数据域架构</div><h2 data-db-i18n="domain.title">五大数据域</h2></div>
+<span class="db-subtle-badge" data-db-i18n="domain.subtitle">配置驱动 · 代理执行 · 状态闭环</span>
+</div>
+<div class="db-domain-flow" id="dbDomainFlow"></div>
+<div class="db-flow-note"><span class="db-pulse-dot"></span><span data-db-i18n="domain.flowNote">核心链路：配置版本下发 → 采集代理执行 → 结果回传 → 当前状态 / 告警 → 审计追踪</span></div>
+</article>
+<article class="card db-org-card">
+<div class="db-card-head">
+<div><div class="section-eyebrow">组织模型</div><h2 data-db-i18n="org.title">组织与现场层级</h2></div>
+<span class="db-subtle-badge">8 级</span>
+</div>
+<div class="db-org-chain" id="dbOrgChain"></div>
+<div class="db-org-foot"><b>cfg.organization_unit</b><span>集团 → 车间/区域</span><b>cfg.production_line</b><span>产线</span><b>cfg.station</b><span>工位</span></div>
+</article>
+</section>
+<section class="db-explorer">
+<aside class="card db-table-nav">
+<div class="db-explorer-title">
+<div><div class="section-eyebrow">数据表浏览</div><h2 data-db-i18n="explorer.tables">全部数据表</h2></div>
+<span class="db-table-count" id="dbTableCount">30</span>
+</div>
+<div class="db-search-wrap"><span>⌕</span><input data-db-placeholder="search.placeholder" id="dbSearch" placeholder="搜索表名、字段或业务含义" type="search"/></div>
+<div class="db-schema-filter" id="dbSchemaFilter"></div>
+<div class="db-table-list" id="dbTableList"></div>
+</aside>
+<section class="card db-table-detail">
+<div class="db-detail-head">
+<div class="db-detail-title-wrap"><div class="db-schema-code" id="dbActiveSchema">cfg</div><div><div class="db-detail-name" id="dbActiveTable">station</div><div class="db-detail-purpose" id="dbActivePurpose"></div></div></div>
+<div class="db-detail-stats"><span><b id="dbFieldCount">0</b><small data-db-i18n="detail.fields">字段</small></span><span><b id="dbOutFkCount">0</b><small>出向外键</small></span><span><b id="dbInFkCount">0</b><small>入向外键</small></span></div>
+</div>
+<div class="db-detail-meta"><span id="dbFullTable"></span><span id="dbSourceScript"></span><span class="db-copy-name" data-db-i18n="detail.copy" id="dbCopyName">复制表名</span></div>
+<div class="db-fields-wrap">
+<table class="db-fields-table">
+<thead><tr><th>#</th><th data-db-i18n="field.name">字段</th><th data-db-i18n="field.type">类型</th><th>可空</th><th>键</th><th data-db-i18n="field.reference">引用</th><th data-db-i18n="field.meaning">业务含义</th></tr></thead>
+<tbody id="dbFieldRows"></tbody>
+</table>
+</div>
+<div class="db-relation-panel">
+<div class="db-relation-head"><b data-db-i18n="relation.title">表关系</b><span id="dbRelationSummary"></span></div>
+<div class="db-relation-list" id="dbRelationList"></div>
+</div>
+</section>
+</section>
+</main>
+</section>
+</div>
+<div class="toast"></div>
+<script src="assets/jquery-3.6.1.min.js"></script>
+<script src="assets/common.js"></script>
+<script src="assets/database-schema-data.js"></script>
+<script src="assets/database-schema.js"></script>
+</body>
+</html>
